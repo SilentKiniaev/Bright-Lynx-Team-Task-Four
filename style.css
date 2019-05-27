@@ -1,0 +1,27 @@
+.chess-border {
+	background: #493520;
+	text-align: center;
+	color: #fff;
+}
+#chess-board {
+	border-spacing: 0;
+}
+#chess-board tr{
+
+}
+#chess-board td{
+	width: 30px;
+	height: 30px;
+}
+.black {
+	background: #000;
+}
+.white {
+	background: #cecbc8;
+}
+.blue {
+	background: #506bce;
+}
+.green {
+	background: #1bc61b;
+}
