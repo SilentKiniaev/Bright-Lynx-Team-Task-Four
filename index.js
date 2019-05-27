@@ -21,8 +21,8 @@ function fillCell(choosen,variantsList,y,x){
 
 //Поиск вариантов хода фигуры с выбранной ячейки
 function findMove(y,x) {
-	const coord = [y,x];
-	let variantsList = [];
+	const coord = [y,x];//Координаты фигуры
+	let variantsList = [];//Список вариантов хода
 	const first = 2;//Первый шаг фигуры на 2 клетки вперёд или назад
 	const second = 1;//Второй шаг на 1 клетку влево или вправо
 	for(let i = 0; i < 2; i++){//Смена координат. Фигура будет двигаться на 2 шага вперёд/назад по X и на 1 шаг вправо/влеао по Y, если i == 0 и на оборот если i == 1.
@@ -42,14 +42,14 @@ function findMove(y,x) {
 };
 
 //Отрисовка шахматной доски
-const printChessBoard = (choosen = [], variantsList = []) => {
+const printChessBoard = (choosen = [], variantsList = []) => {//choosen - выбранные координаты фигуры при клике, variantsList - список ходов
 	root.innerHTML = "";//Обнуление содержимого узла
 	const tempFillCell = fillCell.bind(null,choosen,variantsList);//Каррирование координат фигуры и координат возможных ходов фигуры
-	let chessBoard = "<table id=\"chess-board\">";	
+	let chessBoard = "<table id=\"chess-board\">";	//Отрисовка шахматной доски доски
 	for(let i = 0; i < rowSize+1; i++){
 		chessBoard += "<tr>";
 		for(let j = 0; j < rowSize+1; j++){
-			if(!j && !i) chessBoard += "<td class='chess-border'></td>";
+			if(!j && !i) chessBoard += "<td class='chess-border'></td>";//Пустая ячейка)
 			if(!i && j) chessBoard += "<td class='chess-border'>"+String.fromCharCode(65+j-1)+"</td>";//Отрисовка буквенных символов по горизонтали
 			if(!j && i) chessBoard += "<td class='chess-border'>"+(8-i+1)+"</td>";//Отрисовка числовых символов по вертикали
 			if(i && j) chessBoard += "<td class = "+tempFillCell(i-1,j-1)+" onClick=\"findMove("+(i-1)+","+(j-1)+")\"></td>";//Подбор цвета ячейки через tempFillCell и передача обработчика событий findMove для поиска возможных ходов 
